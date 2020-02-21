@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kn}{open} \PYG{n}{classical}
+
+\PYG{k+kn}{theorem} \PYG{n}{q3b} \PYG{o}{(}\PYG{n}{A} \PYG{n}{B} \PYG{o}{:} \PYG{k+kt}{Prop}\PYG{o}{)} \PYG{o}{:}
+  \PYG{esc}{$A \rightarrow (A \wedge B) \vee (A \wedge \neg B)$} \PYG{o}{:=}
+\PYG{k}{assume} \PYG{n}{x} \PYG{o}{:} \PYG{n}{A}\PYG{o}{,}
+\PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{elim} \PYG{o}{(}\PYG{n}{em} \PYG{n}{B}\PYG{o}{)}
+\PYG{o}{(}\PYG{k}{assume} \PYG{n}{y} \PYG{o}{:} \PYG{n}{B}\PYG{o}{,} \PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{intro\PYGZus{}left} \PYG{esc}{$(A \wedge \neg B)$} \PYG{o}{(}\PYG{n}{and}\PYG{n+nb+bp}{.}\PYG{k+kp}{intro}\PYG{o}{(}\PYG{n}{z}\PYG{o}{)}\PYG{o}{(}\PYG{n}{y}\PYG{o}{)}\PYG{o}{)}\PYG{o}{)}
+\PYG{o}{(}\PYG{k}{assume} \PYG{n}{z} \PYG{o}{:} \PYG{esc}{$\neg}\PYG{err}{\PYGZdl{}}\PYG{n}{B}\PYG{o}{,} \PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{intro\PYGZus{}right} \PYG{esc}{$(A \wedge B)$} \PYG{o}{(}\PYG{n}{and}\PYG{n+nb+bp}{.}\PYG{k+kp}{intro}\PYG{o}{(}\PYG{n}{x}\PYG{o}{)}\PYG{o}{(}\PYG{n}{z}\PYG{o}{)}\PYG{o}{)}\PYG{o}{)}
+\end{Verbatim}

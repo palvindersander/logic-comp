@@ -1,0 +1,245 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8x]{inputenc}
+
+\usepackage[left=4cm,top=3.5cm,right=4cm,bottom=3.5cm]{geometry}
+
+\usepackage{geometry}
+\geometry{a4paper}
+
+\usepackage{graphicx}
+
+\usepackage{minted}
+% global minted style  
+\setminted{  
+encoding=utf-8
+}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Palvinder Sander}
+\lhead{Logic \& Computation Assessment One}
+\rfoot{Page \thepage}
+
+\usepackage{mathpartir}
+
+\usepackage{bussproofs}
+\usepackage{cancel}
+\usepackage{tabularx}
+
+%\usepackage{tcolorbox}
+%\usepackage{etoolbox}
+%\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
+%\AfterEndEnvironment{minted}{\end{tcolorbox}}%
+
+\newminted{python}{frame=lines,framerule=2pt}
+
+\title{Logic Assessment One}
+\author{Palvinder Sander}
+\date{}
+
+\begin{document}
+
+\section*{Question One:}
+
+\subsection*{A)}
+Corresponding lean proof:
+\begin{minted}[frame=single,framesep=10pt,mathescape=true,escapeinside=||]{Lean}
+theorem q1a (A B C : Prop) :
+  |$(A \wedge C) \vee (B \wedge C) \rightarrow (A \vee B) \wedge C$| :=
+assume h : |$(A \wedge C) \vee (B \wedge C)$|,
+and.intro
+  (or.elim h
+    (assume k : |$A \wedge C$|, or.intro_left B (and.elim_left(k)))
+    (assume l : |$B \wedge C$|, or.intro_right A (and.elim_left(l))))
+  (or.elim h
+    (assume k : |$A \wedge C$|, and.elim_right(k))
+    (assume l : |$B \wedge C$|, and.elim_right(l)))
+\end{minted}
+
+\subsection*{B)}
+Corresponding proof tree:
+\begin{center}
+\begin{prooftree}
+\def\labelSpacing{3pt}
+\def\extraVskip{3pt}
+\def\ScoreOverhang{2pt}
+
+\AxiomC{}
+	\RightLabel{h}
+	\UnaryInfC{$(A \wedge C) \vee (B \wedge C)$}
+	
+\AxiomC{}
+	\RightLabel{k}
+	\UnaryInfC{$A \wedge C$}
+	\RightLabel{[$\wedge$E]}
+	\UnaryInfC{$A,C$}
+	\RightLabel{[$\vee$I]}
+	\UnaryInfC{$A\vee B, A,C$}
+	\RightLabel{[$\wedge$I]}
+	\UnaryInfC{$(A \vee B) \wedge C$}
+	\RightLabel{k[$\rightarrow$I]}
+	\UnaryInfC{$A \rightarrow (A \vee B) \wedge C$}
+	
+\AxiomC{}
+	\RightLabel{k}
+	\UnaryInfC{$B \wedge C$}
+	\RightLabel{[$\wedge$E]}
+	\UnaryInfC{$B,C$}
+	\RightLabel{[$\vee$I]}
+	\UnaryInfC{$A\vee B, B,C$}
+	\RightLabel{[$\wedge$I]}
+	\UnaryInfC{$(A \vee B) \wedge C$}
+	\RightLabel{k[$\rightarrow$I]}
+	\UnaryInfC{$A \rightarrow (A \vee B) \wedge C$}
+	\RightLabel{[$\vee E$]}
+	
+		\TrinaryInfC{$(A \vee B) \wedge C$}
+		\RightLabel{h[$\rightarrow$I]}
+		
+			\UnaryInfC{$(A \wedge C) \vee (B \wedge C) \rightarrow (A \vee B) \wedge C$}
+\end{prooftree}
+\end{center}
+
+\section*{Question Two:}
+Truth table to check validity of the logical equivalence $(A \wedge C) \vee (B \wedge C) \leftrightarrow (A\vee B) \wedge C$:
+\begin{table}[ht]
+\centering
+\def\arraystretch{1.5}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+A & B & C & $A \wedge C$ & $B \wedge C$ & $(A \wedge C) \wedge (B \wedge C)$ & $(A \vee B)$ & $(A \vee B) \vee C$ \\ \hline
+F & F & F & F & F & F & F & F \\
+F & F & T & F & F & F & F & F \\
+F & T & F & F & F & F & T & F \\
+F & T & T & F & T & T & T & T \\
+T & F & F & F & F & F & T & F \\
+T & F & T & T & F & T & T & T \\
+T & T & F & F & F & F & T & F \\
+T & T & T & T & T & T & T & T \\ \hline
+\end{tabular}
+\end{table}
+
+\section*{Question Three:}
+\subsection*{A)}
+Proof tree for proof of $A \rightarrow (A\wedge B)\vee(A \wedge \neg B)$ by natural deduction:
+\begin{center}
+\begin{prooftree}
+\def\labelSpacing{3pt}
+\def\extraVskip{3pt}
+\def\ScoreOverhang{2pt}
+
+\AxiomC{}
+	\RightLabel{EM}
+	\UnaryInfC{$B \vee \neg B$}
+	
+\AxiomC{}
+	\RightLabel{x}
+	\UnaryInfC{$A$}
+	\RightLabel{y}
+	\AxiomC{}
+		\UnaryInfC{$B$}
+	\RightLabel{[$\wedge$I]}
+	\BinaryInfC{$A\wedge B$}
+	\RightLabel{[$\vee$I]}
+	\UnaryInfC{$(A \wedge B) \vee (A \wedge \neg B)$}
+	\RightLabel{y[$\rightarrow$I]}
+	\UnaryInfC{$B \rightarrow (A \wedge B) \vee (A \wedge \neg B)$}
+	\RightLabel{[$\vee E$]}
+	
+\AxiomC{}
+	\RightLabel{x}
+	\UnaryInfC{$A$}
+	\RightLabel{z}
+	\AxiomC{}
+		\UnaryInfC{$\neg B$}
+	\RightLabel{[$\wedge$I]}
+	\BinaryInfC{$A\wedge \neg B$}
+	\RightLabel{[$\vee$I]}
+	\UnaryInfC{$(A \wedge B) \vee (A \wedge \neg B)$}
+	\RightLabel{z[$\rightarrow$I]}
+	\UnaryInfC{$\neg B \rightarrow (A \wedge B) \vee (A \wedge \neg B)$}
+	\RightLabel{[$\vee E$]}
+	
+		\TrinaryInfC{$(A \wedge B) \vee (A \wedge \neg B)$}
+		\RightLabel{x[$\rightarrow$I]}
+		
+			\UnaryInfC{$A \rightarrow (A \wedge B) \vee (A \wedge \neg B)$}
+\end{prooftree}
+\end{center}
+\subsection*{B)}
+Proof implemented in lean:
+\begin{minted}[frame=single,framesep=10pt,mathescape=true,escapeinside=||]{Lean}
+open classical
+
+theorem q3b (A B : Prop) :
+  |$A \rightarrow (A \wedge B) \vee (A \wedge \neg B)$| :=
+assume x : A,
+or.elim (em B)
+(assume y : B, or.intro_left |$(A \wedge \neg B)$| (and.intro(x)(y)))
+(assume z : |$\neg$|B, or.intro_right |$(A \wedge B)$| (and.intro(x)(z)))
+\end{minted}
+
+\section*{Question 4:}
+\subsection*{A)}
+Expressing $P \wedge (Q \rightarrow R)$ in CNF form: \\
+First we must create the corresponding truth table.
+\begin{table}[ht]
+\centering
+\def\arraystretch{1.5}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+P & Q & R & $P$ & $Q \rightarrow R$ & $P \wedge (Q \rightarrow R)$  \\ \hline
+F & F & F & F & T & F  \\
+F & F & T & F & T & F  \\
+F & T & F & F & F & F  \\
+F & T & T & F & T & F  \\
+T & F & F & T & T & T  \\
+T & F & T & T & T & T  \\
+T & T & F & T & F & F  \\
+T & T & T & T & T & T  \\ \hline
+\end{tabular}
+\end{table}
+\newpage
+Enumerating all the rows from the conclusion column.
+\begin{enumerate}
+\item $\neg P \wedge \neg Q \wedge \neg R$
+\item $\neg P \wedge \neg Q \wedge R$
+\item $\neg P \wedge Q \wedge \neg R$
+\item $\neg P \wedge Q \wedge R$
+\item $ P \wedge Q \wedge R$
+\end{enumerate}
+After negating these formulae (from only the $T$ rows) then joining them with an AND we get:
+$$(P\vee Q \vee R) \wedge (P \vee Q \vee \neg R) \wedge (P \vee \neg Q \vee R) \wedge (P \vee \neg Q \vee \neg R) \wedge (\neg P \vee \neg Q \vee R)$$
+\subsection*{B)}
+Expressing $P \wedge (Q \rightarrow R)$ in DNF form:
+First we must create the corresponding truth table.
+\begin{table}[ht]
+\centering
+\def\arraystretch{1.5}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+P & Q & R & $P$ & $Q \rightarrow R$ & $P \wedge (Q \rightarrow R)$  \\ \hline
+F & F & F & F & T & F  \\
+F & F & T & F & T & F  \\
+F & T & F & F & F & F  \\
+F & T & T & F & T & F  \\
+T & F & F & T & T & T  \\
+T & F & T & T & T & T  \\
+T & T & F & T & F & F  \\
+T & T & T & T & T & T  \\ \hline
+\end{tabular}
+\end{table}
+\\Enumerating all the rows from the conclusion column.
+\begin{enumerate}
+\item $\neg P \wedge \neg Q \wedge \neg R$
+\item $\neg P \wedge \neg Q \wedge R$
+\item $\neg P \wedge Q \wedge \neg R$
+\item $\neg P \wedge Q \wedge R$
+\item $P \wedge Q \wedge R$
+\end{enumerate}
+After joining these formulae (from only the $T$ rows) with an OR we get:
+$$(P \wedge \neg Q \wedge \neg R) \vee (P \wedge \neg Q \wedge R) \vee (P \wedge Q \wedge R)$$
+\end{document}

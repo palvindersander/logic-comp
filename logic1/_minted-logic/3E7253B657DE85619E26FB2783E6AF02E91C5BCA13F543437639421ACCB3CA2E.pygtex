@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{theorem} \PYG{n}{mul\PYGZus{}cancel\PYGZus{}left\PYGZus{}or} \PYG{o}{\PYGZob{}}\PYG{n}{a} \PYG{n}{b} \PYG{n}{c} \PYG{o}{:} \PYG{n+nb+bp}{ℤ}\PYG{o}{\PYGZcb{}} \PYG{o}{(}\PYG{n}{H} \PYG{o}{:} \PYG{n}{a} \PYG{n+nb+bp}{*} \PYG{n}{b} \PYG{n+nb+bp}{=} \PYG{n}{a} \PYG{n+nb+bp}{*} \PYG{n}{c}\PYG{o}{)} \PYG{o}{:} \PYG{n}{a} \PYG{n+nb+bp}{=} \PYG{l+m+mi}{0} \PYG{n+nb+bp}{∨} \PYG{n}{b} \PYG{n+nb+bp}{=} \PYG{n}{c} \PYG{o}{:=}
+\PYG{k}{have} \PYG{n}{H2} \PYG{o}{:} \PYG{n}{a} \PYG{n+nb+bp}{*} \PYG{o}{(}\PYG{n}{b} \PYG{n+nb+bp}{\PYGZhy{}} \PYG{n}{c}\PYG{o}{)} \PYG{n+nb+bp}{=} \PYG{l+m+mi}{0}\PYG{o}{,} \PYG{k}{by} \PYG{n}{simp}\PYG{o}{,}
+\PYG{k}{have} \PYG{n}{H3} \PYG{o}{:} \PYG{n}{a} \PYG{n+nb+bp}{=} \PYG{l+m+mi}{0} \PYG{n+nb+bp}{∨} \PYG{n}{b} \PYG{n+nb+bp}{\PYGZhy{}} \PYG{n}{c} \PYG{n+nb+bp}{=} \PYG{l+m+mi}{0}\PYG{o}{,} \PYG{k}{from} \PYG{n}{mul\PYGZus{}eq\PYGZus{}zero} \PYG{n}{H2}\PYG{o}{,}
+\PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{imp\PYGZus{}or\PYGZus{}right} \PYG{n}{H3} \PYG{o}{(}\PYG{k}{assume} \PYG{n}{H4} \PYG{o}{:} \PYG{n}{b} \PYG{n+nb+bp}{\PYGZhy{}} \PYG{n}{c} \PYG{n+nb+bp}{=} \PYG{l+m+mi}{0}\PYG{o}{,} \PYG{n}{sub\PYGZus{}eq\PYGZus{}zero} \PYG{n}{H4}\PYG{o}{)}
+\end{Verbatim}

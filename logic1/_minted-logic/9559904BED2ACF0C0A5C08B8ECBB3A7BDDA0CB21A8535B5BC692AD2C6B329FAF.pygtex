@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kn}{theorem} \PYG{n}{q1a} \PYG{o}{(}\PYG{n}{A} \PYG{n}{B} \PYG{n}{C} \PYG{o}{:} \PYG{k+kt}{Prop}\PYG{o}{)} \PYG{o}{:}
+  \PYG{esc}{$(A \wedge C) \vee (B \wedge C) \rightarrow (A \vee B) \wedge C$} \PYG{o}{:=}
+\PYG{k}{assume} \PYG{n}{h} \PYG{o}{:} \PYG{esc}{$(A \wedge C) \vee (B \wedge C)$}\PYG{o}{,}
+\PYG{n}{and}\PYG{n+nb+bp}{.}\PYG{k+kp}{intro}
+  \PYG{o}{(}\PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{elim} \PYG{n}{h}
+    \PYG{o}{(}\PYG{k}{assume} \PYG{n}{k} \PYG{o}{:} \PYG{esc}{$A \wedge C$}\PYG{o}{,} \PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{intro\PYGZus{}left} \PYG{n}{B} \PYG{o}{(}\PYG{n}{and}\PYG{n+nb+bp}{.}\PYG{n}{elim\PYGZus{}left}\PYG{o}{(}\PYG{n}{k}\PYG{o}{)}\PYG{o}{)}\PYG{o}{)}
+    \PYG{o}{(}\PYG{k}{assume} \PYG{n}{l} \PYG{o}{:} \PYG{esc}{$B \wedge C$}\PYG{o}{,} \PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{intro\PYGZus{}right} \PYG{n}{A} \PYG{o}{(}\PYG{n}{and}\PYG{n+nb+bp}{.}\PYG{n}{elim\PYGZus{}left}\PYG{o}{(}\PYG{n}{l}\PYG{o}{)}\PYG{o}{)}\PYG{o}{)}\PYG{o}{)}
+  \PYG{o}{(}\PYG{n}{or}\PYG{n+nb+bp}{.}\PYG{n}{elim} \PYG{n}{h}
+    \PYG{o}{(}\PYG{k}{assume} \PYG{n}{k} \PYG{o}{:} \PYG{esc}{$A \wedge C$}\PYG{o}{,} \PYG{n}{and}\PYG{n+nb+bp}{.}\PYG{n}{elim\PYGZus{}right}\PYG{o}{(}\PYG{n}{k}\PYG{o}{)}\PYG{o}{)}
+    \PYG{o}{(}\PYG{k}{assume} \PYG{n}{l} \PYG{o}{:} \PYG{esc}{$B \wedge C$}\PYG{o}{,} \PYG{n}{and}\PYG{n+nb+bp}{.}\PYG{n}{elim\PYGZus{}right}\PYG{o}{(}\PYG{n}{l}\PYG{o}{)}\PYG{o}{)}\PYG{o}{)}
+\end{Verbatim}
